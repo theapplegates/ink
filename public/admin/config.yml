@@ -2,12 +2,12 @@ backend:
   name: github
   branch: main
   publish_mode: editorial_workflow
-  repo: one-aalam/astro-ink # change this to your repo
-  site_domain: astro-ink.vercel.app # change this to your domain
-  base_url: https://astro-ink.vercel.app # change this to your prod URL
+  repo: theapplegates/ink # change this to your repo
+  site_domain: ink.paulapplegate.com # change this to your domain
+  base_url: https://ink.paulapplegate.com # change this to your prod URL
   auth_scope: repo
   auth_endpoint: oauth
-  display_url: https://astro-ink.vercel.app
+  display_url: https://ink.paulapplegate.com
   logo_url: https://astro-ink.vercel.app/assets/logo.svg
   commit_messages:
     create: 'Create {{collection}} “{{slug}}”'

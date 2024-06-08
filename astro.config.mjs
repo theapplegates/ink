@@ -9,35 +9,35 @@ import vercel from "@astrojs/vercel/serverless";
 import markdoc from "@astrojs/markdoc";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-import remarkCodeTitles from 'remark-code-titles'
+import remarkCodeTitles from 'remark-code-titles';
 import decapCmsOauth from "astro-decap-cms-oauth";
+import netlify from '@astrojs/netlify';
 
 // Full Astro Configuration API Documentation:
 // https://docs.astro.build/reference/configuration-reference
 
 // https://astro.build/config
-export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
+export default defineConfig({
   output: 'server',
-  site: 'https://astro-ink.vercel.app', // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
+  site: 'https://ink.paulapplegate.com',
+  // Your public domain, e.g.: https://my-site.dev/. Used to generate sitemaps and canonical URLs.
   server: {
     // port: 4321, // The port to run the dev server on.
   },
   markdown: {
     syntaxHighlight: 'shiki',
     shikiConfig: {
-      theme: 'css-variables',
+      theme: 'css-variables'
     },
-    remarkPlugins: [
-      remarkCodeTitles
-    ]
+    remarkPlugins: [remarkCodeTitles]
   },
   integrations: [
-    mdx(), 
+    mdx(),
     markdoc(),
-    svelte(), 
+    svelte(),
     tailwind({
-      applyBaseStyles: false,
-    }), 
+      applyBaseStyles: false
+    }),
     sitemap(),
     decapCmsOauth()
   ],
@@ -52,5 +52,8 @@ export default defineConfig( /** @type {import('astro').AstroUserConfig} */{
       allowNodeBuiltins: true
     }
   },
-  adapter: vercel()
+  adapter: netlify({
+    imageCDN: true,
+    edgeMiddleware: true,
+  })
 });
